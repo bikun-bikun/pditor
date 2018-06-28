@@ -1,14 +1,12 @@
 package main
 
 import (
-	"bufio"
-	"fmt"
 	"os"
+
+	"github.com/urfave/cli"
 )
 
 func main() {
-	stdin := bufio.NewScanner(os.Stdin)
-	stdin.Scan()
-	text := stdin.Text()
-	fmt.Println("Input word is \"" + text + "\"")
+	app := cli.NewApp()
+	app.Run(os.Args)
 }
