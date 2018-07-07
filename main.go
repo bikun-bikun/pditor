@@ -4,13 +4,14 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/jung-kurt/gofpdf"
 	"github.com/urfave/cli"
 )
 
 func main() {
 	app := cli.NewApp()
 	app.Name = "pditor"
-	app.Usage = "make an explosive entrance"
+	app.Usage = "PDF etitor"
 	app.Version = "0.0.1"
 
 	app.Commands = []cli.Command{
@@ -34,9 +35,28 @@ func main() {
 					Usage: "This flag is right rotation angle setting values{0, 90, 180, 270}",
 					Value: 0,
 				},
+				cli.StringFlag{
+					Name:  "path, p",
+					Usage: "This flag is file path setting. Set target pdf file path",
+					Value: "",
+				},
 			},
+			Action: rotation,
+		},
+		{
+			Name:    "demoCreate",
+			Aliases: []string{"d"},
 			Action: func(c *cli.Context) error {
-				fmt.Println("Rotate PDF!!!")
+				pdf := gofpdf.New("P", "mm", "A4", "")
+				pdf.AddPage()
+				pdf.MoveTo(20, 20)
+				pdf.LineTo(170, 20)
+				pdf.ClosePath()
+				pdf.SetLineWidth(1)
+				pdf.DrawPath("D")
+				pdf.SetFont("Arial", "B", 16)
+				pdf.Text(40, 50, "Hello, world")
+				pdf.OutputFileAndClose("hello.pdf")
 				return nil
 			},
 		},
@@ -48,4 +68,9 @@ func main() {
 	}
 
 	app.Run(os.Args)
+}
+
+func rotation(c *cli.Context) error {
+	fmt.Println("Rotate PDF!!!")
+	return nil
 }
