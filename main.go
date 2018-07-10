@@ -46,19 +46,7 @@ func main() {
 		{
 			Name:    "demoCreate",
 			Aliases: []string{"d"},
-			Action: func(c *cli.Context) error {
-				pdf := gofpdf.New("P", "mm", "A4", "")
-				pdf.AddPage()
-				pdf.MoveTo(20, 20)
-				pdf.LineTo(170, 20)
-				pdf.ClosePath()
-				pdf.SetLineWidth(1)
-				pdf.DrawPath("D")
-				pdf.SetFont("Arial", "B", 16)
-				pdf.Text(40, 50, "Hello, world")
-				pdf.OutputFileAndClose("hello.pdf")
-				return nil
-			},
+			Action:  demo,
 		},
 	}
 
@@ -72,5 +60,19 @@ func main() {
 
 func rotation(c *cli.Context) error {
 	fmt.Println("Rotate PDF!!!")
+	return nil
+}
+
+func demo(c *cli.Context) error {
+	pdf := gofpdf.New("P", "mm", "A4", "")
+	pdf.AddPage()
+	pdf.MoveTo(20, 20)
+	pdf.LineTo(170, 20)
+	pdf.ClosePath()
+	pdf.SetLineWidth(1)
+	pdf.DrawPath("D")
+	pdf.SetFont("Arial", "B", 16)
+	pdf.Text(40, 50, "Hello, world")
+	pdf.OutputFileAndClose("hello.pdf")
 	return nil
 }
