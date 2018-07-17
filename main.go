@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"os"
 
+	"pditor/commands"
+
 	"github.com/urfave/cli"
 )
 
@@ -45,7 +47,7 @@ func main() {
 		{
 			Name:    "demoCreate",
 			Aliases: []string{"d"},
-			Action:  demo,
+			Action:  commands.Demo,
 		},
 	}
 

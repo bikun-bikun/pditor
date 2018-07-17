@@ -1,11 +1,11 @@
-package main
+package commands
 
 import (
 	"github.com/jung-kurt/gofpdf"
 	"github.com/urfave/cli"
 )
 
-func demo(c *cli.Context) error {
+func Demo(c *cli.Context) error {
 	pdf := gofpdf.New("P", "mm", "A4", "")
 	pdf.AddPage()
 	pdf.MoveTo(20, 20)
