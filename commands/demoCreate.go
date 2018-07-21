@@ -5,7 +5,26 @@ import (
 	"github.com/urfave/cli"
 )
 
-func Demo(c *cli.Context) error {
+const (
+	commandName string = "demoCreate"
+	usage       string = "demoCreate Command create a new \"hello.pdf\" File. "
+)
+
+// DemoCommand return cli.Command
+func DemoCreate() cli.Command {
+	demoCreate := cli.Command{
+
+		Name:    commandName,
+		Usage:   usage,
+		Aliases: []string{"d"},
+		Action:  demo,
+	}
+
+	return demoCreate
+}
+
+// Demo ...
+func demo(c *cli.Context) error {
 	pdf := gofpdf.New("P", "mm", "A4", "")
 	pdf.AddPage()
 	pdf.MoveTo(20, 20)

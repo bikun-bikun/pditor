@@ -44,11 +44,7 @@ func main() {
 			},
 			Action: rotation,
 		},
-		{
-			Name:    "demoCreate",
-			Aliases: []string{"d"},
-			Action:  commands.Demo,
-		},
+		commands.DemoCreate(),
 	}
 
 	app.Action = func(c *cli.Context) error {
