@@ -3,6 +3,7 @@ package commands
 import (
 	"github.com/jung-kurt/gofpdf"
 	"github.com/urfave/cli"
+	"fmt"
 )
 
 const (
@@ -10,17 +11,23 @@ const (
 	usage       string = "demoCreate Command create a new \"hello.pdf\" File. "
 )
 
-// DemoCreate return cli.Command
-func DemoCreate() cli.Command {
-	demoCreate := cli.Command{
+var DemoList = cli.Command{
+	Name: "list",
+	Usage: "list is Linux Command ls",
+	Aliases: []string{"ls"},
+	Action: ls,
+}
 
-		Name:    commandName,
-		Usage:   usage,
-		Aliases: []string{"d"},
-		Action:  demo,
-	}
+var DemoCreate = cli.Command{
+	Name:    commandName,
+	Usage:   usage,
+	Aliases: []string{"d"},
+	Action:  demo,
+}
 
-	return demoCreate
+func ls(c *cli.Context) error{
+	fmt.Printf("c.Args() : %+v\n", c.Args())
+	return nil
 }
 
 // Demo ...

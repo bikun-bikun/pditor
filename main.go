@@ -44,7 +44,8 @@ func main() {
 			},
 			Action: rotation,
 		},
-		commands.DemoCreate(),
+		commands.DemoCreate,
+		commands.DemoList,
 	}
 
 	app.Action = func(c *cli.Context) error {
