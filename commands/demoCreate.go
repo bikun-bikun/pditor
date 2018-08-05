@@ -10,7 +10,7 @@ const (
 	usage       string = "demoCreate Command create a new \"hello.pdf\" File. "
 )
 
-// DemoCommand return cli.Command
+// DemoCreate return cli.Command
 func DemoCreate() cli.Command {
 	demoCreate := cli.Command{
 
